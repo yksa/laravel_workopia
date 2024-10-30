@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-gray-100">
-    @include('partials.navbar')
+    <x-header />
     <main class="container mx-auto mt-4 p-4">
         @yield('content')
     </main>
