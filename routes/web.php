@@ -7,8 +7,10 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
+    $jobs = [];
     return view('jobs.index', [
-        'title' => 'Available Jobs'
+        'title' => 'Available Jobs',
+        'jobs' => $jobs
     ]);
 })->name('jobs');
 
