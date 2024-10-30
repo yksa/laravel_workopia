@@ -8,7 +8,7 @@
 </head>
 
 <body>
-    <h1>Jobs List</h1>
+    <h1><?php echo $title; ?></h1>
     <ul>
         <li>Web Developer</li>
         <li>Backend Developer</li>
