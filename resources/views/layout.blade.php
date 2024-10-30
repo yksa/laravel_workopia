@@ -9,7 +9,7 @@
 </head>
 
 <body class="bg-gray-100">
-    <h1>Welcome To Workopia</h1>
+    @include('partials.navbar')
     <main class="container mx-auto mt-4 p-4">
         @yield('content')
     </main>
