@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class JobController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
         $jobs = ['Job 1', 'Job 2', 'Job 3',];
         return view('jobs.index', compact('jobs'));
@@ -18,7 +19,7 @@ class JobController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view('jobs.create');
     }
@@ -26,17 +27,17 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): string
     {
-        //
+        return 'Store';
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $id): string
     {
-        return 'Show';
+        return "Show $id";
     }
 
     /**
