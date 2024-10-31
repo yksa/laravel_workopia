@@ -4,11 +4,18 @@
             <a href="{{ url('/') }}">Workopia</a>
         </h1>
         <nav class="hidden items-center space-x-4 md:flex">
-            <a href="{{ url('/jobs') }}" class="py-2 text-white hover:underline">All Jobs</a>
-            <a href="{{ url('/jobs/saved') }}" class="py-2 text-white hover:underline">Saved Jobs</a>
-            <a href="{{ url('/login') }}" class="py-2 text-white hover:underline">Login</a>
-            <a href="{{ url('/register') }}" class="py-2 text-white hover:underline">Register</a>
-            <a href="{{ url('/dashboard') }}" class="py-2 text-white hover:underline">
+            <a href="{{ url('/jobs') }}"
+                class="{{ request()->is('jobs') ? 'font-bold text-yellow-500' : '' }} py-2 text-white hover:underline">All
+                Jobs</a>
+            <a href="{{ url('/jobs/saved') }}"
+                class="{{ request()->is('jobs/saved') ? 'font-bold text-yellow-500' : '' }} py-2 text-white hover:underline">Saved
+                Jobs</a>
+            <a href="{{ url('/login') }}"
+                class="{{ request()->is('login') ? 'font-bold text-yellow-500' : '' }} py-2 text-white hover:underline">Login</a>
+            <a href="{{ url('/register') }}"
+                class="{{ request()->is('register') ? 'font-bold text-yellow-500' : '' }} py-2 text-white hover:underline">Register</a>
+            <a href="{{ url('/dashboard') }}"
+                class="{{ request()->is('dashboard') ? 'font-bold text-yellow-500' : '' }} py-2 text-white hover:underline">
                 <i class="fa fa-gauge mr-1"></i> Dashboard
             </a>
             <a href="{{ url('/jobs/create') }}"
