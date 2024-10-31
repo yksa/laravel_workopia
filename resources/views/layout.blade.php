@@ -10,10 +10,14 @@
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     @vite('resources/css/app.css')
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
 
 <body class="bg-gray-100">
     <x-header />
+    @if (request()->is('/'))
+        <x-hero />
+    @endif
     <main class="container mx-auto mt-4 p-4">
         {{ $slot }}
     </main>
