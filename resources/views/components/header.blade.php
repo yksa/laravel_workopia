@@ -18,15 +18,12 @@
     </div>
     <!-- Mobile Menu -->
     <nav id="mobile-menu" class="mt-5 hidden space-y-2 bg-blue-900 pb-4 text-white md:hidden">
-        <a href="{{ url('/jobs') }}" class="block px-4 py-2 hover:bg-blue-700">All Jobs</a>
-        <a href="{{ url('/jobs/saved') }}" class="block px-4 py-2 hover:bg-blue-700">Saved Jobs</a>
-        <a href="{{ url('/login') }}" class="block px-4 py-2 hover:bg-blue-700">Login</a>
-        <a href="{{ url('/register') }}" class="block px-4 py-2 hover:bg-blue-700">Register</a>
-        <a href="{{ url('/dashboard') }}" class="block py-2 text-white hover:underline">
-            <i class="fa fa-gauge mr-1"></i> Dashboard
-        </a>
-        <a href="{{ url('/jobs/create') }}" class="block bg-yellow-500 px-4 py-2 text-black hover:bg-yellow-600">
-            <i class="fa fa-edit"></i> Create Job
-        </a>
+        <x-nav-link url="/jobs" mobile={{ true }}>All Jobs</x-nav-link>
+        <x-nav-link url="/jobs/saved" :mobile="true">Saved Jobs</x-nav-link>
+        <x-nav-link url="/login" icon="user" mobile={{ true }}>Login</x-nav-link>
+        <x-nav-link url="/register" mobile={{ true }}>Register</x-nav-link>
+        <x-nav-link url="/dashboard" icon="gauge" mobile={{ true }}>Dashboard</x-nav-link>
+
+        <x-button-link url="/jobs/create" icon="edit" mobile={{ true }}>Create Job</x-button-link>
     </nav>
 </header>
