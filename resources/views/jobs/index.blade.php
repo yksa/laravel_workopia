@@ -5,7 +5,8 @@
     @else
         <ul>
             @foreach ($jobs as $job)
-                <li>{{ $job->title }} - {{ $job['description'] }}</li>
+                <li><a href="{{ route('jobs.show', $job->id) }}">{{ $job->title }} - {{ $job['description'] }}</a>
+                </li>
             @endforeach
         </ul>
     @endif
