@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the job listings for the user.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Job>
+     */
+    public function jobListings()
+    {
+        return $this->hasMany(Job::class);
+    }
 }

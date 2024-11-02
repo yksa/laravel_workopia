@@ -24,6 +24,17 @@ class Job extends Model
         'company_name',
         'company_description',
         'company_logo',
-        'company_website'
+        'company_website',
+        'user_id'
     ];
+
+    /**
+     * Get the user that posted the job.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
