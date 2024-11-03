@@ -1,6 +1,16 @@
 <x-layout>
     <x-slot name="title">Create New Job</x-slot>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="mx-auto w-full rounded-lg bg-white p-8 shadow-md md:max-w-3xl">
         <h2 class="mb-4 text-center text-4xl font-bold">
             Create Job Listing
@@ -62,13 +72,22 @@
                 @enderror
             </div>
 
+            {{-- <div class="mb-4">
+                <label class="block text-gray-700" for="remote">Remote</label>
+                <select id="remote" name="remote" class="w-full rounded border px-4 py-2 focus:outline-none">
+                    <option value="{{ old('remote') ?? 'false' }}">No</option>
+                    <option value="{{ old('remote') ?? 'true' }}">Yes</option>
+                </select>
+            </div> --}}
+
             <div class="mb-4">
                 <label class="block text-gray-700" for="remote">Remote</label>
                 <select id="remote" name="remote" class="w-full rounded border px-4 py-2 focus:outline-none">
-                    <option value="false">No</option>
-                    <option value="true">Yes</option>
+                    <option value="0" {{ old('remote') == '0' ? 'selected' : '' }}>No</option>
+                    <option value="1" {{ old('remote') == '1' ? 'selected' : '' }}>Yes</option>
                 </select>
             </div>
+
 
             <x-inputs.text id="address" name="address" label="Address" placeholder="123 Main St" />
 
@@ -92,13 +111,13 @@
             </div>
 
             <x-inputs.text id="company_website" name="company_website" label="Company Website"
-                placeholder="Enter Website" />
+                placeholder="Enter Website" type="url" />
 
             <x-inputs.text id="contact_phone" name="contact_phone" label="Contact Phone"
                 placeholder="Enter Contact Phone" />
 
-            <x-inputs.text id="email" name="email" label="Contact Email" placeholder="Enter Contact Email"
-                type="email" />
+            <x-inputs.text id="contact_email" name="contact_email" label="Contact Email"
+                placeholder="Enter Contact Email" type="email" />
 
             <div class="mb-4">
                 <label class="block text-gray-700" for="company_logo">Company Logo</label>

@@ -11,6 +11,8 @@ class Job extends Model
     protected $table = 'job_listings';
 
     protected $fillable = [
+        'title',
+        'description',
         'salary',
         'tags',
         'job_type',
@@ -25,10 +27,10 @@ class Job extends Model
         'contact_phone',
         'company_name',
         'company_description',
-        'company_logo',
         'company_website',
-        'user_id'
+        'user_id',
     ];
+
 
     /**
      * Get the user that posted the job.
