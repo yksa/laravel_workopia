@@ -72,14 +72,6 @@
                 @enderror
             </div>
 
-            {{-- <div class="mb-4">
-                <label class="block text-gray-700" for="remote">Remote</label>
-                <select id="remote" name="remote" class="w-full rounded border px-4 py-2 focus:outline-none">
-                    <option value="{{ old('remote') ?? 'false' }}">No</option>
-                    <option value="{{ old('remote') ?? 'true' }}">Yes</option>
-                </select>
-            </div> --}}
-
             <div class="mb-4">
                 <label class="block text-gray-700" for="remote">Remote</label>
                 <select id="remote" name="remote" class="w-full rounded border px-4 py-2 focus:outline-none">
