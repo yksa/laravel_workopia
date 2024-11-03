@@ -39,32 +39,36 @@
                         <li class="mb-2">
                             <strong>Site Location:</strong> {{ $job->city }}, {{ $job->state }}
                         </li>
-                        <li class="mb-2">
-                            <strong>Tags:</strong>
-                            <span>
-                                {{ implode(', ', array_map('ucfirst', explode(',', $job->tags))) }}
-                            </span>
-                        </li>
+                        @if ($job->tags)
+                            <li class="mb-2">
+                                <strong>Tags:</strong>
+                                <span>
+                                    {{ implode(', ', array_map('ucfirst', explode(',', $job->tags))) }}
+                                </span>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>
 
             <div class="container mx-auto p-4">
-                <h2 class="mb-4 text-xl font-semibold">Job Details</h2>
-                <div class="rounded-lg bg-white p-4 shadow-md">
-                    <h3 class="mb-2 text-lg font-semibold text-blue-500">
-                        Job Requirements
-                    </h3>
-                    <p>
-                        {{ $job->requirements }}
-                    </p>
-                    <h3 class="mb-2 mt-4 text-lg font-semibold text-blue-500">
-                        Benefits
-                    </h3>
-                    <p>
-                        {{ $job->benefits }}
-                    </p>
-                </div>
+                @if ($job->requirements || $job->benefits)
+                    <h2 class="mb-4 text-xl font-semibold">Job Details</h2>
+                    <div class="rounded-lg bg-white p-4 shadow-md">
+                        <h3 class="mb-2 text-lg font-semibold text-blue-500">
+                            Job Requirements
+                        </h3>
+                        <p>
+                            {{ $job->requirements }}
+                        </p>
+                        <h3 class="mb-2 mt-4 text-lg font-semibold text-blue-500">
+                            Benefits
+                        </h3>
+                        <p>
+                            {{ $job->benefits }}
+                        </p>
+                    </div>
+                @endif
                 <p class="my-5">
                     Put "Job Application" as the subject of your email
                     and attach your resume.
@@ -85,12 +89,18 @@
             <h3 class="mb-4 text-center text-xl font-bold">
                 Company Info
             </h3>
-            <img src="/images/{{ $job->company_logo }}" alt="Ad" class="m-auto mb-4 w-full rounded-lg" />
+            @if ($job->company_logo)
+                <img src="/images/{{ $job->company_logo }}" alt="Ad" class="m-auto mb-4 w-full rounded-lg" />
+            @endif
             <h4 class="text-lg font-bold">{{ $job->company_name }}</h4>
-            <p class="my-3 text-lg text-gray-700">
-                {{ $job->company_description }}
-            </p>
-            <a href="{{ $job->company_website }}" target="_blank" class="text-blue-500">Visit Website</a>
+            @if ($job->description)
+                <p class="my-3 text-lg text-gray-700">
+                    {{ $job->company_description }}
+                </p>
+            @endif
+            @if ($job->company_website)
+                <a href="{{ $job->company_website }}" target="_blank" class="text-blue-500">Visit Website</a>
+            @endif
 
             <a href=""
                 class="mt-10 flex w-full items-center justify-center rounded-full bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600"><i

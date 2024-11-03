@@ -2,7 +2,9 @@
 
 <div class="rounded-lg bg-white p-4 shadow-md">
     <div class="space-between flex items-center gap-4">
-        <img src="/images/{{ $job->company_logo }}" alt="{{ $job->company_name }}" class="w-14" />
+        @if ($job->company_logo)
+            <img src="/images/{{ $job->company_logo }}" alt="Ad" class="w-16 rounded-lg" />
+        @endif
         <div>
             <h2 class="text-xl font-semibold">
                 {{ $job->title }}
@@ -28,12 +30,16 @@
                 </span>
             @endif
         </li>
-        <li class="mb-2">
-            <strong>Tags:</strong>
-            <span>
-                {{ implode(', ', array_map('ucfirst', explode(',', $job->tags))) }}
-            </span>
-        </li>
+
+        @if ($job->tags)
+            <li class="mb-2">
+                <strong>Tags:</strong>
+                <span>
+                    {{ implode(', ', array_map('ucfirst', explode(',', $job->tags))) }}
+                </span>
+            </li>
+        @endif
+
     </ul>
     <a href="{{ route('jobs.show', $job->id) }}"
         class="block w-full rounded border bg-indigo-100 px-5 py-2.5 text-center text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-200">
