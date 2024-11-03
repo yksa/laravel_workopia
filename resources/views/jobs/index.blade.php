@@ -1,13 +1,11 @@
 <x-layout>
-    <h1>Available Jobs</h1>
-    @if (count($jobs) === 0)
-        <p>No jobs available</p>
-    @else
-        <ul>
+    <div class="mb-6 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        @if (count($jobs) === 0)
+            <p>No jobs available</p>
+        @else
             @foreach ($jobs as $job)
-                <li><a href="{{ route('jobs.show', $job->id) }}">{{ $job->title }} - {{ $job['description'] }}</a>
-                </li>
+                <x-job-card :job="$job" />
             @endforeach
-        </ul>
-    @endif
+        @endif
+    </div>
 </x-layout>
