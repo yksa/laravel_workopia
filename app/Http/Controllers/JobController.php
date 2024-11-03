@@ -55,8 +55,16 @@ class JobController extends Controller
         // Hardcoded user Id
         $validatedData['user_id'] = 1;
 
+        // Handle company logo upload
+        if ($request->hasFile('company_logo')) {
+            $companyLogo = $request->file('company_logo');
+            $companyLogoPath = $companyLogo->store('logos', 'public');
+            $validatedData['company_logo'] = $companyLogoPath;
+        }
+
         // dd($validatedData);
 
+        // Submit data to database
         Job::create($validatedData);
 
         return redirect()->route('jobs.index')->with('success', 'Job created successfully!');

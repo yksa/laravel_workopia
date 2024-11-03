@@ -3,7 +3,7 @@
 <div class="rounded-lg bg-white p-4 shadow-md">
     <div class="space-between flex items-center gap-4">
         @if ($job->company_logo)
-            <img src="/images/{{ $job->company_logo }}" alt="Ad" class="w-16 rounded-lg" />
+            <img src="/storage/{{ $job->company_logo }}" alt="Ad" class="w-16 rounded-lg" />
         @endif
         <div>
             <h2 class="text-xl font-semibold">

@@ -28,6 +28,7 @@ class Job extends Model
         'company_name',
         'company_description',
         'company_website',
+        'company_logo',
         'user_id',
     ];
 
