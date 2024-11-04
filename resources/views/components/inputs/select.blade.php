@@ -1,4 +1,4 @@
-@props(['id', 'name', 'label' => null, 'options' => []])
+@props(['id', 'name', 'label' => null, 'options' => [], 'value' => ''])
 
 <div class="mb-4">
     @if ($label)
@@ -7,8 +7,8 @@
     <select id="{{ $id }}" name="{{ $name }}"
         class="@error($name) border-red-500 @enderror w-full rounded border px-4 py-2 focus:outline-none">
 
-        @foreach ($options as $value => $optionLabel)
-            <option value="{{ $value }}" {{ old($name) == $value ? 'selected' : '' }}>
+        @foreach ($options as $optionValue => $optionLabel)
+            <option value="{{ $optionValue }}" {{ old($name, $value) == $optionValue ? 'selected' : '' }}>
                 {{ $optionLabel }}
             </option>
         @endforeach

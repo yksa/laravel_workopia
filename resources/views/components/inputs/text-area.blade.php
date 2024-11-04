@@ -1,4 +1,4 @@
-@props(['id', 'name', 'label' => null, 'placeholder' => '', 'rows' => 7])
+@props(['id', 'name', 'label' => null, 'placeholder' => '', 'rows' => 7, 'value' => ''])
 
 <div class="mb-4">
     @if ($label)
@@ -6,7 +6,7 @@
     @endif
     <textarea cols="30" rows="{{ $rows }}" id="{{ $id }}" name="{{ $name }}"
         class="@error($name) border-red-500 @enderror w-full rounded border px-4 py-2 focus:outline-none"
-        placeholder="{{ $placeholder }}">{{ old($name) }}</textarea>
+        placeholder="{{ $placeholder }}">{{ old($name, $value) }}</textarea>
     @error($name)
         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
     @enderror
