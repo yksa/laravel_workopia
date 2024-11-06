@@ -7,7 +7,6 @@ use Illuminate\View\View;
 use App\Models\Job;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 class JobController extends Controller
 {
