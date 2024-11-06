@@ -1,8 +1,8 @@
 @props(['url' => '/', 'icon' => null, 'mobile' => false])
 
 @php
-    // Remove leading slash, if it exists
-    $urlPath = ltrim($url, '/');
+    // Check if $url is not "/"
+    $urlPath = $url === '/' ? $url : ltrim($url, '/');
 @endphp
 
 @if ($mobile)
