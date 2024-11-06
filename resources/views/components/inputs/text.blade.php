@@ -5,8 +5,8 @@
         <label class="block text-gray-700" for="{{ $id }}">{{ $label }}</label>
     @endif
     <input id="{{ $id }}" name="{{ $name }}" type="{{ $type }}"
-        class="@error($name) border-red-500 @enderror w-full rounded border px-4 py-2 focus:outline-none"
-        placeholder="{{ $placeholder }}" value="{{ old($name, $value) }}" />
+        class="@error($name) border-red-500 @enderror w-full rounded border px-4 py-2" placeholder="{{ $placeholder }}"
+        value="{{ old($name, $value) }}" />
     @error($name)
         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
     @enderror
