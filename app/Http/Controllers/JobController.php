@@ -72,8 +72,12 @@ class JobController extends Controller
         return redirect()->route('jobs.index')->with('success', 'Job created successfully!');
     }
 
+
     /**
      * Display the specified resource.
+     *
+     * @param  Job  $job
+     * @return View
      */
     public function show(Job $job): View
     {
@@ -89,8 +93,13 @@ class JobController extends Controller
         return view('jobs.edit')->with('job', $job);
     }
 
+
     /**
      * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Job  $job
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Job $job): RedirectResponse
     {
@@ -133,8 +142,12 @@ class JobController extends Controller
         return redirect()->route('jobs.index')->with('success', 'Job updated successfully!');
     }
 
+
     /**
-     * Remove the specified resource from storage.
+     * Delete a job and remove the associated company logo.
+     *
+     * @param \App\Models\Job $job
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Job $job): RedirectResponse
     {
