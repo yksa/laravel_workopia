@@ -1,5 +1,33 @@
 <x-layout>
     <section class="flex flex-col gap-4 md:flex-row">
+        {{-- Profile Info Form --}}
+        <div class="w-full rounded-lg bg-white p-8 shadow-md">
+            <h3 class="mb-4 text-center text-3xl font-bold">
+                Profile Info
+            </h3>
+
+            @if (Auth::user()->avatar)
+                <div class="mt-2 flex justify-center">
+                    <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
+                        class="h-24 w-24 rounded-full object-cover">
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+
+                <x-inputs.text id="name" name="name" label="Name" value="{{ Auth::user()->name }}" />
+                <x-inputs.text id="email" name="email" label="Email address" type="email"
+                    value="{{ Auth::user()->email }}" />
+
+                <x-inputs.file id="avatar" name="avatar" label="Upload Avatar" />
+
+                <button type="submit"
+                    class="w-full rounded border bg-green-500 px-4 py-2 text-white hover:bg-green-600 focus:outline-none">Save</button>
+            </form>
+        </div>
+
         {{-- Job Listings --}}
         <div class="w-full rounded-lg bg-white p-8 shadow-md">
             <h3 class="mb-4 text-center text-3xl font-bold">
