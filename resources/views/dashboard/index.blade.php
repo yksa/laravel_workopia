@@ -7,7 +7,7 @@
             </h3>
 
             @if (Auth::user()->avatar)
-                <div class="mt-2 flex justify-center bg-red-400">
+                <div class="mt-2 flex justify-center">
                     <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
                         class="h-20 w-20 rounded-full object-cover">
                 </div>
