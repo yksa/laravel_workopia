@@ -8,4 +8,7 @@
             @endforeach
         @endif
     </div>
+
+    {{-- Pagination --}}
+    {{ $jobs->links() }}
 </x-layout>
