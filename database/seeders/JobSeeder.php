@@ -17,10 +17,20 @@ class JobSeeder extends Seeder
         // Load job listings from file
         $jobListings = include database_path('seeders/data/job_listings.php');
         // Get user ids from user Model
-        $userIds = User::pluck('id')->toArray();
+        // $userIds = User::pluck('id')->toArray();
 
-        foreach ($jobListings as $jobListing) {
-            $jobListing['user_id'] = $userIds[array_rand($userIds)];
+        // Get test user id
+        $testUserId = User::where('email', 'test@test.com')->value('id');
+        $userIds = User::where('email', '!=', 'test@test.com')->pluck('id')->toArray();
+
+        foreach ($jobListings as $index => $jobListing) {
+            if ($index < 2) {
+                // Assign the first two listings to the test user
+                $jobListing['user_id'] = $testUserId;
+            } else {
+
+                $jobListing['user_id'] = $userIds[array_rand($userIds)];
+            }
 
             // Add timestamps
             $jobListing['created_at'] = now();
