@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Models\Job;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class JobController extends Controller
@@ -53,8 +54,7 @@ class JobController extends Controller
             'company_website' => 'nullable|url',
         ]);
 
-        // Hardcoded user Id
-        $validatedData['user_id'] = 1;
+        $validatedData['user_id'] = Auth::user()->id;
 
         // Handle company logo upload
         if ($request->hasFile('company_logo')) {
