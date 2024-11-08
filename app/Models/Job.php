@@ -60,6 +60,6 @@ class Job extends Model
 
     public function applicants(): HasMany
     {
-        return $this->hasMany(Applicant::class)->withTimestamps();
+        return $this->hasMany(Applicant::class);
     }
 }
