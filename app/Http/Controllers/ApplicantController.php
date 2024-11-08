@@ -7,6 +7,7 @@ use App\Models\Applicant;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicantController extends Controller
 {
@@ -33,5 +34,17 @@ class ApplicantController extends Controller
         $applicant->save();
 
         return redirect()->back()->with('success', 'Application submitted successfully!');
+    }
+
+    public function destroy(Applicant $applicant): RedirectResponse
+    {
+        // delete resume
+        if ($applicant->resume_path) {
+            Storage::disk('public')->delete($applicant->resume_path);
+        }
+
+        $applicant->delete();
+
+        return redirect()->back()->with('success', 'Application deleted successfully!');
     }
 }
