@@ -6,7 +6,7 @@
         x-transition:enter-start="translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100"
         x-transition:leave="transform transition ease-in duration-300"
         x-transition:leave-start="translate-x-0 opacity-100" x-transition:leave-end="translate-x-full opacity-0"
-        class="{{ $type == 'success' ? 'bg-green-500' : 'bg-red-500' }} absolute right-2 top-2 mb-4 rounded p-4 text-sm text-white shadow-lg">
+        class="{{ $type == 'success' ? 'bg-green-500' : 'bg-red-500' }} mb-4 rounded p-4 text-sm text-white shadow-lg">
         {{ $message }}
     </div>
 @endif

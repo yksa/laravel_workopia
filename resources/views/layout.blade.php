@@ -16,19 +16,18 @@
 
 <body class="bg-gray-100">
     <x-header />
+    {{-- Display alert messages --}}
+    @if (session()->has('success'))
+        <x-alert type="success" message="{{ session('success') }}" />
+    @endif
+    @if (session()->has('error'))
+        <x-alert type="danger" message="{{ session('error') }}" />
+    @endif
     @if (request()->is('/'))
         <x-hero />
         <x-top-banner />
     @endif
     <main class="container mx-auto mt-4 p-4">
-        {{-- Display alert messages --}}
-        @if (session()->has('success'))
-            <x-alert type="success" message="{{ session('success') }}" />
-        @endif
-        @if (session()->has('error'))
-            <x-alert type="danger" message="{{ session('error') }}" />
-        @endif
-
         {{ $slot }}
     </main>
 
