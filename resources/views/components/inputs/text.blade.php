@@ -1,4 +1,4 @@
-@props(['id', 'name', 'label' => null, 'type' => 'text', 'placeholder' => '', 'value' => ''])
+@props(['id', 'name', 'label' => null, 'type' => 'text', 'placeholder' => '', 'value' => '', 'required' => false])
 
 <div class="mb-4">
     @if ($label)
@@ -6,7 +6,7 @@
     @endif
     <input id="{{ $id }}" name="{{ $name }}" type="{{ $type }}"
         class="@error($name) border-red-500 @enderror w-full rounded border px-4 py-2" placeholder="{{ $placeholder }}"
-        value="{{ old($name, $value) }}" />
+        value="{{ old($name, $value) }}" {{ $required ? 'required' : '' }} />
     @error($name)
         <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
     @enderror

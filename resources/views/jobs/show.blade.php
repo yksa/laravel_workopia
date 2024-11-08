@@ -1,7 +1,7 @@
 <x-layout>
-    <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
+    <div class="grid grid-cols-1 gap-6 lg:grid-cols-4">
         <!-- Job Details Column -->
-        <section class="md:col-span-3">
+        <section class="lg:col-span-3">
             <div class="rounded-lg bg-white p-3 shadow-md">
                 <div class="flex items-center justify-between">
                     <a class="block p-4 text-blue-700" href="{{ route('jobs.index') }}">
@@ -75,19 +75,57 @@
                         </p>
                     </div>
                 @endif
-                <p class="my-5">
-                    Put "Job Application" as the subject of your email
-                    and attach your resume.
-                </p>
-                <a href="mailto:{{ $job->contact_email }}"
-                    class="block w-full cursor-pointer rounded border bg-indigo-100 px-5 py-2.5 text-center text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-200">
-                    Apply Now
-                </a>
+
+                @auth
+                    <p class="my-5">
+                        Put "Job Application" as the subject of your email
+                        and attach your resume.
+                    </p>
+
+                    <div x-data="{ open: @json(session()->has('errors')) }">
+                        <button @click="open = true"
+                            class="block w-full cursor-pointer rounded border bg-indigo-100 px-5 py-2.5 text-center text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-200">
+                            Apply Now
+                        </button>
+
+                        <div x-show="open" class="fixed inset-0 flex items-center justify-center bg-gray-900/50" x-cloak>
+                            <!-- Modal Container -->
+                            <div @click.away="open = false"
+                                class="mx-4 my-6 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-6 shadow-lg">
+                                <h3 class="mb-4 text-lg font-semibold">
+                                    Apply For {{ $job->title }}
+                                </h3>
+
+                                <form enctype="multipart/form-data">
+                                    @csrf
+                                    <x-inputs.text id="full_name" name="full_name" label="Full Name" :required="true" />
+                                    <x-inputs.text id="contact_phone" name="contact_phone" label="Contact Phone" />
+                                    <x-inputs.text type="email" id="contact_email" name="contact_email"
+                                        label="Contact Email" :required="true" />
+                                    <x-inputs.text-area id="message" name="message" label="Message" :rows="5" />
+                                    <x-inputs.text id="location" name="location" label="Location" />
+                                    <x-inputs.file id="resume" name="resume" label="Resume" :required="true" />
+
+                                    <button type="submit"
+                                        class="mt-4 rounded-md bg-blue-500 px-4 py-2 text-center font-bold text-white hover:bg-blue-600">Submit
+                                        Application</button>
+                                    <button @click="open = false"
+                                        class="mt-4 rounded-md bg-gray-300 px-4 py-2 text-center font-bold text-black hover:bg-gray-400">Cancel
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <p class="my-5 rounded-xl bg-gray-200 p-3">
+                        <i class="fas fa-info-circle mr-3"></i> You must be logged in to apply for this job
+                    </p>
+                @endauth
             </div>
 
-            <div class="mt-6 rounded-lg bg-white p-6 shadow-md">
+            {{-- <div class="mt-6 rounded-lg bg-white p-6 shadow-md">
                 <div id="map"></div>
-            </div>
+            </div> --}}
         </section>
 
         <!-- Sidebar -->
