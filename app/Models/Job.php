@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Job extends Model
 {
@@ -38,8 +40,20 @@ class Job extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /*************  ✨ Codeium Command ⭐  *************/
+    /**
+     * Get the users who have bookmarked the job.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    /******  2b4c2d96-060f-4380-9d4d-6e758d2fae0d  *******/
+    public function bookmarkedByUsers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'job_user_bookmarks')->withTimestamps();
     }
 }
