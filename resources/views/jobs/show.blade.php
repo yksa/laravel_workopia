@@ -83,6 +83,7 @@
                     </p>
 
                     <div x-data="{ open: @json(session()->has('errors')) }">
+                        {{-- <div x-data="{ open: false }"> --}}
                         <button @click="open = true"
                             class="block w-full cursor-pointer rounded border bg-indigo-100 px-5 py-2.5 text-center text-base font-medium text-indigo-700 shadow-sm hover:bg-indigo-200">
                             Apply Now
@@ -96,11 +97,12 @@
                                     Apply For {{ $job->title }}
                                 </h3>
 
-                                <form enctype="multipart/form-data">
+                                <form enctype="multipart/form-data" method="POST"
+                                    action="{{ route('applicant.store', $job->id) }}">
                                     @csrf
-                                    <x-inputs.text id="full_name" name="full_name" label="Full Name" :required="true" />
+                                    <x-inputs.text id="full_name" name="full_name" label="Full Name" :required="false" />
                                     <x-inputs.text id="contact_phone" name="contact_phone" label="Contact Phone" />
-                                    <x-inputs.text type="email" id="contact_email" name="contact_email"
+                                    <x-inputs.text type="contact_email" id="contact_email" name="contact_email"
                                         label="Contact Email" :required="true" />
                                     <x-inputs.text-area id="message" name="message" label="Message" :rows="5" />
                                     <x-inputs.text id="location" name="location" label="Location" />
