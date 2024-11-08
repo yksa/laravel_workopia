@@ -7,7 +7,7 @@
             <x-nav-link url="/">Home</x-nav-link>
             <x-nav-link url="/jobs">All Jobs</x-nav-link>
             @auth
-                <x-nav-link url="/jobs/saved">Saved Jobs</x-nav-link>
+                <x-nav-link url="/bookmarks">Saved Jobs</x-nav-link>
                 <x-nav-link url="/dashboard" icon="gauge">Dashboard</x-nav-link>
                 <x-logout-button />
                 <div class="flex items-center space-x-3">
@@ -36,7 +36,7 @@
         class="mt-5 space-y-2 bg-blue-900 pb-4 text-white md:hidden">
         <x-nav-link url="/jobs" mobile={{ true }}>All Jobs</x-nav-link>
         @auth
-            <x-nav-link url="/jobs/saved" :mobile="true">Saved Jobs</x-nav-link>
+            <x-nav-link url="/bookmarks" :mobile="true">Saved Jobs</x-nav-link>
             <x-nav-link url="/dashboard" icon="gauge" mobile={{ true }}>Dashboard</x-nav-link>
             <x-logout-button mobile={{ true }} />
             <x-button-link url="/jobs/create" icon="edit" mobile={{ true }}>Create Job</x-button-link>
