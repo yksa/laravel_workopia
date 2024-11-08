@@ -89,7 +89,8 @@
                             Apply Now
                         </button>
 
-                        <div x-show="open" class="fixed inset-0 flex items-center justify-center bg-gray-900/50" x-cloak>
+                        <dialog x-show="open"
+                            class="fixed inset-0 flex h-full w-full items-center justify-center bg-gray-900/50" x-cloak>
                             <!-- Modal Container -->
                             <div @click.away="open = false"
                                 class="mx-4 my-6 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-lg bg-white p-6 shadow-lg">
@@ -116,7 +117,7 @@
                                     </button>
                                 </form>
                             </div>
-                        </div>
+                        </dialog>
                     </div>
                 @else
                     <p class="my-5 rounded-xl bg-gray-200 p-3">
