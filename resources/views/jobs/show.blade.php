@@ -114,13 +114,24 @@
                     You must be logged in to bookmark a job
                 </p>
             @else
-                <form action="{{ route('bookmarks.store', $job->id) }}" method="POST">
+                <form
+                    action="{{ auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists()? route('bookmarks.destroy', $job->id): route('bookmarks.store', $job->id) }}"
+                    method="POST">
                     @csrf
-                    <button type="submit"
-                        class="mt-8 w-full rounded-full bg-blue-500 px-4 py-2 text-center font-bold text-white hover:bg-blue-600">
-                        <i class="fas fa-bookmark mr-3"></i>
-                        Bookmark This Job
-                    </button>
+                    @if (auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists())
+                        @method('DELETE')
+                        <button type="submit"
+                            class="mt-8 w-full rounded-full bg-red-500 px-4 py-2 text-center font-bold text-white hover:bg-red-600">
+                            <i class="fas fa-bookmark mr-3"></i>
+                            Remove Bookmark
+                        </button>
+                    @else
+                        <button type="submit"
+                            class="mt-8 w-full rounded-full bg-blue-500 px-4 py-2 text-center font-bold text-white hover:bg-blue-600">
+                            <i class="fas fa-bookmark mr-3"></i>
+                            Bookmark This Job
+                        </button>
+                    @endif
                 </form>
             @endguest
         </aside>
