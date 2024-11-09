@@ -9,6 +9,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\GeocodeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -39,3 +40,5 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/applicants/{applicant}', [ApplicantController::class, 'destroy'])->name('applicant.destroy');
 });
+
+Route::get('/geocode', [GeocodeController::class, 'geocode']);

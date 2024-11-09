@@ -183,12 +183,11 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.7.0/mapbox-gl.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Your Mapbox access token
+        // if we remove accessToken from the client it will not work, so we need to add it here
+        // there are two options to remvoe the access token, 
+        // one is to remove it from the client, and return static image from the server but it will loose the interactivity
+        // two is don't remove, restrict the access token from mapbox token management
         mapboxgl.accessToken = "{{ env('MAPBOX_API_KEY') }}";
-
-        console.log('Mapbox')
-        console.log(mapboxgl.accessToken);
-
         // Initialize the map
         const map = new mapboxgl.Map({
             container: 'map', // ID of the container element
@@ -197,21 +196,20 @@
             zoom: 9, // Default zoom level
         });
 
+
         // Get address from Laravel view
         const city = '{{ $job->city }}';
         const state = '{{ $job->state }}';
         const address = city + ', ' + state;
 
-        const url =
-            `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${mapboxgl.accessToken}`;
+        const url = `/geocode?address=${encodeURIComponent(address)}`;
+
 
         // Geocode the address
         fetch(url)
             .then((response) => response.json())
             .then((data) => {
-                console.log({
-                    data
-                })
+
                 if (data.features.length > 0) {
                     const [longitude, latitude] = data.features[0].center;
 
