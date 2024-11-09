@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
@@ -20,8 +19,8 @@ class JobSeeder extends Seeder
         // $userIds = User::pluck('id')->toArray();
 
         // Get test user id
-        $testUserId = User::where('email', 'test@test.com')->value('id');
-        $userIds = User::where('email', '!=', 'test@test.com')->pluck('id')->toArray();
+        $testUserId = User::where('email', 'yekyawswaraung@gmail.com')->value('id');
+        $userIds = User::where('email', '!=', 'yekyawswaraung@gmail.com')->pluck('id')->toArray();
 
         foreach ($jobListings as $index => $jobListing) {
             if ($index < 2) {
